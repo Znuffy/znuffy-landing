@@ -98,91 +98,107 @@ const Faq = () => {
     const [topic, setTopic] = useState();
     const [message, setMessage] = useState();
 
+    const [thanksMessage, setThanksMessage] = useState();
+
     return (
-      <form
-        as="form"
-        sx={{ marginTop: "5%" }}
-        onSubmit={(e) => {
-          e.preventDefault();
-          const getData = async () => {
-            try {
-              const response = await fetch(
-                "https://api.pumble.com/workspaces/622a80b0f1f3750071e7e29e/incomingWebhooks/postMessage/6231158a96bc223fec8457a0/4HSr6YxYjg2AbEHxVdjK7dRi",
-                {
-                  method: "POST",
-                  body: JSON.stringify({
-                    text: `Name: ${name}, \nLastname: ${lastname}, \nPhone: ${phone}, \nEmail: ${email}, \nTopic: ${topic}, \nMessage: ${message}`,
-                  }),
+      <>
+        {!thanksMessage && (
+          <form
+            as="form"
+            sx={{ marginTop: "5%" }}
+            onSubmit={(e) => {
+              e.preventDefault();
+              const getData = async () => {
+                try {
+                  const response = await fetch(
+                    "https://api.pumble.com/workspaces/622a80b0f1f3750071e7e29e/incomingWebhooks/postMessage/6231158a96bc223fec8457a0/4HSr6YxYjg2AbEHxVdjK7dRi",
+                    {
+                      method: "POST",
+                      body: JSON.stringify({
+                        text: `Name: ${name}, \nLastname: ${lastname}, \nPhone: ${phone}, \nEmail: ${email}, \nTopic: ${topic}, \nMessage: ${message}`,
+                      }),
+                    }
+                  );
+                  setName("");
+                  setLastname("");
+                  setEmail("");
+                  setPhone("");
+                  setTopic("");
+                  setMessage("");
+                  setThanksMessage("Thank you for your message");
+                } catch {
+                  console.log(err);
                 }
-              );
-            } catch {
-              console.log(err);
-            }
-          };
+              };
 
-          getData();
-        }}
-      >
-        <Box
-          sx={{
-            display: "grid",
-            gridTemplateColumns: ["auto", "1fr 50%"],
-          }}
-        >
-          <Box p={2}>
-            <Label htmlFor="name">Name</Label>
-            <Input
-              name="name"
-              id="name"
-              mb={3}
-              required
-              onChange={(e) => setName(e.target.value)}
-            />
-            <Label htmlFor="tel">Tel (optional)</Label>
-            <Input
-              name="tel"
-              id="tel"
-              mb={3}
-              onChange={(e) => setPhone(e.target.value)}
-            />
-          </Box>
+              getData();
+            }}
+          >
+            <Box
+              sx={{
+                display: "grid",
+                gridTemplateColumns: ["auto", "1fr 50%"],
+              }}
+            >
+              <Box p={2}>
+                <Label htmlFor="name">Name</Label>
+                <Input
+                  name="name"
+                  id="name"
+                  mb={3}
+                  required
+                  onChange={(e) => setName(e.target.value)}
+                />
+                <Label htmlFor="tel">Tel (optional)</Label>
+                <Input
+                  name="tel"
+                  id="tel"
+                  mb={3}
+                  onChange={(e) => setPhone(e.target.value)}
+                />
+              </Box>
 
-          <Box p={2}>
-            <Label htmlFor="lastname">Last Name</Label>
-            <Input
-              name="lastname"
-              id="lastname"
-              mb={3}
-              onChange={(e) => setLastname(e.target.value)}
-            />
-            <Label htmlFor="e-mail">E-mail</Label>
-            <Input
-              type="email"
-              name="e-mail"
-              id="e-mail"
-              mb={3}
-              onChange={(e) => setEmail(e.target.value)}
-            />
-          </Box>
-        </Box>
+              <Box p={2}>
+                <Label htmlFor="lastname">Last Name</Label>
+                <Input
+                  name="lastname"
+                  id="lastname"
+                  mb={3}
+                  onChange={(e) => setLastname(e.target.value)}
+                />
+                <Label htmlFor="e-mail">E-mail</Label>
+                <Input
+                  type="email"
+                  name="e-mail"
+                  id="e-mail"
+                  mb={3}
+                  onChange={(e) => setEmail(e.target.value)}
+                />
+              </Box>
+            </Box>
 
-        <Label htmlFor="topic">Topic</Label>
-        <Input
-          name="Topic"
-          id="topic"
-          mb={3}
-          onChange={(e) => setTopic(e.target.value)}
-        />
-        <Label htmlFor="comment">Comment</Label>
-        <Textarea
-          name="comment"
-          id="comment"
-          rows={6}
-          mb={3}
-          onChange={(e) => setMessage(e.target.value)}
-        />
-        <Button>Submit</Button>
-      </form>
+            <Label htmlFor="topic">Topic</Label>
+            <Input
+              name="Topic"
+              id="topic"
+              mb={3}
+              onChange={(e) => setTopic(e.target.value)}
+            />
+            <Label htmlFor="comment">Comment</Label>
+            <Textarea
+              name="comment"
+              id="comment"
+              rows={6}
+              mb={3}
+              onChange={(e) => setMessage(e.target.value)}
+            />
+            <Button>Submit</Button>
+          </form>
+        )}
+        {thanksMessage !== "" && (
+          <h2 sx={styles.finalMessage}>{thanksMessage}</h2>
+        )}
+      </>
     );
   };
 
@@ -309,5 +325,9 @@ const styles = {
       fontSize: "24px",
       color: "#B1B8C0",
     },
+  },
+  finalMessage: {
+    display: "flex",
+    justifyContent: "space-around",
   },
 };
