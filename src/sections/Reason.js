@@ -49,7 +49,7 @@ const FAQ_ONE_DATA = {
 const Reason = () => {
   const { sectionImage, title, text, tagline, faqs } = FAQ_ONE_DATA;
   return (
-    <Box as="section" id="team" sx={styles.section}>
+    <Box as="section" sx={styles.section}>
       <Box sx={styles.sectionImage}>
         <Image
           src={sectionImage}
