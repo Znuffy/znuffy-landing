@@ -22,7 +22,7 @@ const PRODUCT_FEATURE = {
       icon: anjiePic,
       title: "Anjelika Angelova",
       role: "UX Designer and Strategist",
-      text: "Get your info tests delivered at home collect a sample from the your pogress actual tests.",
+      text: "What I believe, as a human and as a professional is that what you decide to work on and how you work on it, will define who you are and will shape the community around you. My purpose is to contribute to something impactful, something meaningful that will bring change. And working on Znuffy is the best example for that.",
     },
     {
       icon: refitPic,
@@ -38,7 +38,7 @@ const PRODUCT_FEATURE = {
     },
     {
       icon: barbiePic,
-      title: "Barbie Caceres",
+      title: "Barbie Cáceres",
       role: "AudioVisual Documentation",
       text: "Get your info tests delivered at home collect a sample from the your pogress actual tests.",
     },
