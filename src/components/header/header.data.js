@@ -20,7 +20,7 @@ export default [
     offset: -70,
   },
   {
-    path: "Got Recomendations?",
+    path: "gotRecomendations?",
     label: "Got Recomendations?",
     offset: -70,
   },

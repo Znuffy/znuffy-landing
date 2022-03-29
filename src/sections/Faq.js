@@ -220,7 +220,7 @@ const Faq = () => {
             />
           ))}
         </Box>
-        <Box sx={styles.buttonWrap}>
+        <Box id="gotRecomendations?" sx={styles.buttonWrap}>
           <Link onClick={buttonHandler}>{button.label}</Link>
         </Box>
         {openForm && <Form />}
