@@ -1,5 +1,4 @@
 import React from "react";
-import Image from "next/image";
 import {
   Box,
   Container,
@@ -10,31 +9,44 @@ import {
   Input,
   Button,
   Link,
+  Image,
 } from "theme-ui";
 
 import bannerImg from "assets/banner.svg";
 
+// Translations
+import { IntlProvider, FormattedMessage } from "react-intl";
+
 const BANNER_DATA = {
   title: "Adopting and Living with Pets made easy",
+  EsTitle: "Adoptar y vivir con animales nunca fue tan facil",
   text: "Znuffy is the first Platform in the market that provides tools to adopt Animals looking for a home, and the elements needed to maintain your new best friends stress-free.",
+  EsText:
+    "Znuffy es la primera plataforma del mercado que proporciona herramientas para adoptar animales que buscan un hogar, y los elementos necesarios para mantener a tus nuevos mejores amigos sin estrés.",
   image: bannerImg,
 };
 const Banner = () => {
-  const { title, text, image } = BANNER_DATA;
+  const { title, EsTitle, text, EsText, image } = BANNER_DATA;
   return (
-    <Box as="section" id="banner" sx={styles.section}>
-      <Container sx={styles.container}>
-        <Flex sx={styles.flex}>
-          <Box sx={styles.content}>
-            <Heading as="h2">{title}</Heading>
-            <Text as="p">{text}</Text>
-          </Box>
-          <Box sx={styles.images}>
-            <Image src={image} width="740" height="558" alt="section image" />
-          </Box>
-        </Flex>
-      </Container>
-    </Box>
+    <IntlProvider messages={BANNER_DATA} locale="es" defaultLocale="en">
+      <Box as="section" id="banner" sx={styles.section}>
+        <Container sx={styles.container}>
+          <Flex sx={styles.flex}>
+            <Box sx={styles.content}>
+              <Heading as="h2">
+                <FormattedMessage id={title} defaultMessage={EsTitle} />
+              </Heading>
+              <Text as="p">
+                <FormattedMessage id={text} defaultMessage={EsText} />
+              </Text>
+            </Box>
+            <Box sx={styles.images}>
+              <Image src={image} width="740" height="558" alt="section image" />
+            </Box>
+          </Flex>
+        </Container>
+      </Box>
+    </IntlProvider>
   );
 };
 

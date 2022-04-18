@@ -24,7 +24,7 @@ const FAQ_TWO_DATA = {
     {
       status: false,
       title: "What exactly is Znuffy?",
-      text: "We make it easy to move to CometNine. Simply contact us and we'll move your hosting account from any other provider, regardless of the control panel. If at anytime your website is down for more than 0.1% result with proper investigation experiments.",
+      text: "Znuffy is an App for the Adoption and maintanance of animals. The adoption segment, related to the Adoption of primarly streen animals, and ",
     },
     {
       status: true,
