@@ -1,5 +1,4 @@
 import React from "react";
-// import Image from "next/image";
 import { Container, Link, Box, Grid, Heading, Text, Image } from "theme-ui";
 import { IoIosArrowForward } from "react-icons/io";
 import SectionHeading from "components/section-heading";
@@ -11,6 +10,10 @@ import refitPic from "assets/teamPics/Refit.jpg";
 import maxPic from "assets/teamPics/Max2.jpg";
 import ximePic from "assets/teamPics/xime2.png";
 import barbiePic from "assets/teamPics/barbie.png";
+
+// Memojis
+import maxMemoji from "../assets/teamPics/memojis/maxMemoji.png";
+import ximeMemoji from "../assets/teamPics/memojis/ximeMemoji.png";
 
 const PRODUCT_FEATURE = {
   sectionTitle: {
@@ -43,13 +46,13 @@ const PRODUCT_FEATURE = {
       text: "Get your info tests delivered at home collect a sample from the your pogress actual tests.",
     },
     {
-      icon: ximePic,
+      icon: ximeMemoji,
       title: "Ximena Scura",
       role: "Graphic Communications",
       text: "Get your info tests delivered at home collect a sample from the your pogress actual tests.",
     },
     {
-      icon: maxPic,
+      icon: maxMemoji,
       title: "Max Rosales",
       role: "Project and Technological Development",
       text: "Get your info tests delivered at home collect a sample from the your pogress actual tests.",
