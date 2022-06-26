@@ -1,50 +1,52 @@
-import React, { useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
+import { LanguageContext } from "../contexts/language/language.context";
 import { Box, Container, Heading, Text, Link, Image } from "theme-ui";
 import ModalVideo from "react-modal-video";
-import videoImage from "assets/video.png";
 
-// Translations
-import { IntlProvider, FormattedMessage } from "react-intl";
-
-const VIDEO_DATA = {
-  image: videoImage,
-  title: ``,
-  text: "Here is a quick introduction to what was said above",
-  EsText: "Resumen de lo mencionado arriba",
-  button: {
-    label: "",
-    link: "#",
-  },
-};
 const Video = () => {
+  const [currentLanguage, setCurrentLanguage] = useState();
+  const { state } = useContext(LanguageContext);
   const [videoOpen, setVideoOpen] = useState(false);
+
   const handleClick = (e) => {
     e.preventDefault();
     setVideoOpen(true);
   };
-  const { image, title, text, EsText, button } = VIDEO_DATA;
+
+  useEffect(() => {
+    if (state.currentLanguage === "ENG") {
+      setCurrentLanguage(state.ENG.video);
+    } else if (state.currentLanguage === "ESP") {
+      setCurrentLanguage(state.ESP.video);
+    }
+  }, [state.currentLanguage]);
   return (
-    <IntlProvider messages={VIDEO_DATA} locale="es" defaultLocale="en">
-      <Box sx={styles.section}>
-        <Container>
-          <Box sx={styles.content}>
-            <Heading as="h3">{title}</Heading>
-            <Text as="p">
-              <FormattedMessage id={text} defaultMessage={EsText} />
-            </Text>
-          </Box>
-          <Box onClick={handleClick} sx={styles.image}>
-            <Image width="1075" height="650" src={image} alt="video image" />
-          </Box>
-        </Container>
-        <ModalVideo
-          channel="youtube"
-          isOpen={videoOpen}
-          videoId="Qwok8si3bz4"
-          onClose={() => setVideoOpen(false)}
-        />
-      </Box>
-    </IntlProvider>
+    <>
+      {currentLanguage !== undefined && (
+        <Box sx={styles.section}>
+          <Container>
+            <Box sx={styles.content}>
+              <Heading as="h3">{currentLanguage.title}</Heading>
+              <Text as="p">{currentLanguage.text}</Text>
+            </Box>
+            <Box onClick={handleClick} sx={styles.image}>
+              <Image
+                width="1075"
+                height="650"
+                src={currentLanguage.image}
+                alt="video image"
+              />
+            </Box>
+          </Container>
+          <ModalVideo
+            channel="youtube"
+            isOpen={videoOpen}
+            videoId="Qwok8si3bz4"
+            onClose={() => setVideoOpen(false)}
+          />
+        </Box>
+      )}
+    </>
   );
 };
 

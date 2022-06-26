@@ -1,78 +1,45 @@
-import React from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { Box, Container, Flex, Heading, Text, Image } from "theme-ui";
-import image1 from "assets/features-1.svg";
-import image2 from "assets/features-2.svg";
+import { LanguageContext } from "../contexts/language/language.context";
 
-import dog from "assets/icons/dog.png";
-import dogFood from "assets/icons/dog-bowl.png";
-import image3 from "assets/features-3.svg";
-
-// Translations
-import { IntlProvider, FormattedMessage } from "react-intl";
-
-const FEATURES_DATA = {
-  title: "Una plataforma de adopción y comercio electrónico de mascotas",
-  text: "¿Que es Znuffy?",
-  posts: [
-    {
-      image: dog,
-      title: "Adopt Street and Home Animals easily",
-      EsTitle: "Adoptá Animales de la calle y huerfanos facilmente",
-      text: "Everyone deserves love, we provide a safe and easy platform to find your new best friend with a few clicks.",
-      EsText:
-        "Todos se merecen amor, nosotros proporcionamos una plataforma segura y fácil para encontrar a tu nuevo mejor amigo con pocos clicks.",
-    },
-    {
-      image: dogFood,
-      title: "Get all you need to keep your pet happy",
-      EsTitle:
-        "Conseguí todo lo que necesitás para mantener a tu mascota feliz",
-      text: "Taking care of an animal, is not an easy task, we change that by providing accessible and deliver-to-your-door products.",
-      EsText:
-        "Cuidar de un animal no es una tarea fácil, nosotros cambiamos eso proporcionando productos accesibles y con entrega a domicilio.",
-    },
-  ],
-};
 const Mission = () => {
-  const { title, text, posts } = FEATURES_DATA;
+  const [currentLanguage, setCurrentLanguage] = useState();
+  const { state } = useContext(LanguageContext);
+
+  useEffect(() => {
+    if (state.currentLanguage === "ENG") {
+      setCurrentLanguage(state.ENG.mission);
+    } else if (state.currentLanguage === "ESP") {
+      setCurrentLanguage(state.ESP.mission);
+    }
+  }, [state.currentLanguage]);
+
   return (
-    <IntlProvider messages={FEATURES_DATA} locale="es" defaultLocale="en">
-      <Box as="section" id="mission" sx={styles.section}>
-        <Container sx={styles.container}>
-          <Box sx={styles.sectionTitle}>
-            <Text as="p">
-              <FormattedMessage
-                id="text"
-                defaultMessage="What exactly is Znuffy?"
-              />
-            </Text>
-            <Heading as="h2">
-              <FormattedMessage
-                id="title"
-                defaultMessage="A Pet Adoption-and-eCommerce Platform"
-              />
-            </Heading>
-          </Box>
-          <Flex sx={styles.flex}>
-            {posts.map(({ image, title, EsTitle, text, EsText }, index) => (
-              <Box sx={styles.post} key={`feature-post-key-${index}`}>
-                <Box className="image">
-                  <Image width="70" height="70" src={image} alt={title} />
+    <>
+      {currentLanguage !== undefined && (
+        <Box as="section" id="mission" sx={styles.section}>
+          <Container sx={styles.container}>
+            <Box sx={styles.sectionTitle}>
+              <Text as="p">{currentLanguage.title}</Text>
+              <Heading as="h2">{currentLanguage.text}</Heading>
+            </Box>
+            <Flex sx={styles.flex}>
+              {currentLanguage.posts.map(({ image, title, text }, index) => (
+                <Box sx={styles.post} key={`feature-post-key-${index}`}>
+                  <Box className="image">
+                    <Image width="70" height="70" src={image} alt={title} />
+                  </Box>
+                  <Box sx={styles.postContent}>
+                    <Heading as="h3">{title}</Heading>
+                    <Text as="p">{text}</Text>
+                  </Box>
                 </Box>
-                <Box sx={styles.postContent}>
-                  <Heading as="h3">
-                    <FormattedMessage id={title} defaultMessage={EsTitle} />
-                  </Heading>
-                  <Text as="p">
-                    <FormattedMessage id={text} defaultMessage={EsText} />
-                  </Text>
-                </Box>
-              </Box>
-            ))}
-          </Flex>
-        </Container>
-      </Box>
-    </IntlProvider>
+              ))}
+            </Flex>
+          </Container>
+        </Box>
+      )}
+    </>
   );
 };
 

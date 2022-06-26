@@ -1,52 +1,43 @@
-import React from "react";
-import {
-  Box,
-  Container,
-  Flex,
-  Heading,
-  Text,
-  Label,
-  Input,
-  Button,
-  Link,
-  Image,
-} from "theme-ui";
+import React, { useContext, useState, useEffect } from "react";
+import { Box, Container, Flex, Heading, Text, Image } from "theme-ui";
 
-import bannerImg from "assets/banner.svg";
+// Context
+import { LanguageContext } from "../contexts/language/language.context";
 
-// Translations
-import { IntlProvider, FormattedMessage } from "react-intl";
-
-const BANNER_DATA = {
-  title: "Adopting and Living with Pets made easy",
-  EsTitle: "Adoptar y vivir con animales nunca fue tan facil",
-  text: "Znuffy is the first Platform in the market that provides tools to adopt Animals looking for a home, and the elements needed to maintain your new best friends stress-free.",
-  EsText:
-    "Znuffy es la primera plataforma del mercado que proporciona herramientas para adoptar animales que buscan un hogar, y los elementos necesarios para mantener a tus nuevos mejores amigos sin estrés.",
-  image: bannerImg,
-};
 const Banner = () => {
-  const { title, EsTitle, text, EsText, image } = BANNER_DATA;
+  const [currentLanguage, setCurrentLanguage] = useState();
+  const { state } = useContext(LanguageContext);
+
+  useEffect(() => {
+    if (state.currentLanguage === "ENG") {
+      setCurrentLanguage(state.ENG.banner);
+    } else if (state.currentLanguage === "ESP") {
+      setCurrentLanguage(state.ESP.banner);
+    }
+  }, [state.currentLanguage]);
   return (
-    <IntlProvider messages={BANNER_DATA} locale="es" defaultLocale="en">
-      <Box as="section" id="banner" sx={styles.section}>
-        <Container sx={styles.container}>
-          <Flex sx={styles.flex}>
-            <Box sx={styles.content}>
-              <Heading as="h2">
-                <FormattedMessage id={title} defaultMessage={EsTitle} />
-              </Heading>
-              <Text as="p">
-                <FormattedMessage id={text} defaultMessage={EsText} />
-              </Text>
-            </Box>
-            <Box sx={styles.images}>
-              <Image src={image} width="740" height="558" alt="section image" />
-            </Box>
-          </Flex>
-        </Container>
-      </Box>
-    </IntlProvider>
+    <>
+      {currentLanguage !== undefined && (
+        <Box as="section" id="banner" sx={styles.section}>
+          <Container sx={styles.container}>
+            <Flex sx={styles.flex}>
+              <Box sx={styles.content}>
+                <Heading as="h2">{currentLanguage.title}</Heading>
+                <Text as="p">{currentLanguage.text}</Text>
+              </Box>
+              <Box sx={styles.images}>
+                <Image
+                  src={currentLanguage.image}
+                  width="740"
+                  height="558"
+                  alt="section image"
+                />
+              </Box>
+            </Flex>
+          </Container>
+        </Box>
+      )}
+    </>
   );
 };
 

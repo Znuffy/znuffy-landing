@@ -4,10 +4,27 @@ import { jsx, Container, Flex } from "theme-ui";
 import { Link as ScrollLink } from "react-scroll";
 import Logo from "components/logo";
 import { DrawerProvider } from "contexts/drawer/drawer.provider";
+import { LanguageContext } from "contexts/language/language.context";
 import MobileDrawer from "./mobile-drawer";
 import menuItems from "./header.data";
+import Flag from "../UI/Flag";
+import React, { useCallback, useState, useEffect, useContext } from "react";
 
-export default function Header({ className }) {
+export default function Header({ className, onPickLanguage }) {
+  const { state, dispatch } = useContext(LanguageContext);
+  const setESP = useCallback(() => dispatch({ type: "SET_ESP" }), [dispatch]);
+  const setENG = useCallback(() => dispatch({ type: "SET_ENG" }), [dispatch]);
+
+  const languagePicker = (e) => {
+    if (e === "ENG") {
+      setENG();
+    } else if (e === "ESP") {
+      setESP();
+    } else {
+      console.log("ni uno :(");
+    }
+  };
+
   return (
     <DrawerProvider>
       <header sx={styles.header} className={className}>
@@ -29,8 +46,12 @@ export default function Header({ className }) {
                 {label}
               </ScrollLink>
             ))}
+            <div sx={styles.languages}>
+              <Flag language="ESP" onPickLanguage={languagePicker} />
+              <Flag language="ENG" onPickLanguage={languagePicker} />
+            </div>
           </Flex>
-          <MobileDrawer />
+          <MobileDrawer langPicker={languagePicker} />
         </Container>
       </header>
     </DrawerProvider>
@@ -86,5 +107,9 @@ const styles = {
         color: "#3AABF5",
       },
     },
+  },
+  languages: {
+    display: "flex",
+    flexDirection: "row",
   },
 };
