@@ -1,0 +1,11 @@
+.flagContainer{
+display: flex;
+align-items:flex-start;
+padding: 0 10px;
+}
+
+.languageButton{
+  border: none;
+  padding: 5px;
+  background-color: transparent;
+}

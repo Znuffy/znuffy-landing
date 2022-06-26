@@ -1,89 +1,25 @@
-import React, { useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { keyframes } from "@emotion/core";
 import { IoIosAdd, IoIosRemove } from "react-icons/io";
 // Form
-import {
-  Label,
-  Input,
-  Select,
-  Textarea,
-  Radio,
-  Checkbox,
-  Slider,
-  Button,
-  Flex,
-} from "theme-ui";
+import { Label, Input, Textarea, Button } from "theme-ui";
+
+// Context
+import { LanguageContext } from "../contexts/language/language.context";
 
 import { Box, Container, Heading, Text, Link } from "theme-ui";
-const FAQ_TWO_DATA = {
-  sectionTitle: {
-    title: "Frequantly asked question",
-    text: "Get your question answer",
-  },
-  posts: [
-    {
-      status: false,
-      title: "What exactly is Znuffy?",
-      text: "Znuffy is an App for the Adoption and maintanance of animals. The adoption segment, related to the Adoption of primarly streen animals, and ",
-    },
-    {
-      status: true,
-      title: "What do you want to accomplish?",
-      text: "We make it easy to move to CometNine. Simply contact us and we'll move your hosting account from any other provider, regardless of the control panel. If at anytime your website is down for more than 0.1% result with proper investigation experiments.",
-    },
-    {
-      status: false,
-      title: "When is it going to be launched?",
-      text: "We make it easy to move to CometNine. Simply contact us and we'll move your hosting account from any other provider, regardless of the control panel. If at anytime your website is down for more than 0.1% result with proper investigation experiments.",
-    },
-    {
-      status: false,
-      title: "I want to help, how can i do it?",
-      text: "We make it easy to move to CometNine. Simply contact us and we'll move your hosting account from any other provider, regardless of the control panel. If at anytime your website is down for more than 0.1% result with proper investigation experiments.",
-    },
-    {
-      status: false,
-      title: "I want to get in touch with the Znuffy Team",
-      text: "We make it easy to move to CometNine. Simply contact us and we'll move your hosting account from any other provider, regardless of the control panel. If at anytime your website is down for more than 0.1% result with proper investigation experiments.",
-    },
-    {
-      status: false,
-      title: "I want to donate to the Znuffy NGO",
-      text: "We make it easy to move to CometNine. Simply contact us and we'll move your hosting account from any other provider, regardless of the control panel. If at anytime your website is down for more than 0.1% result with proper investigation experiments.",
-    },
-  ],
-  button: {
-    link: "#",
-    label: "Contact us <3",
-  },
-};
-const FaqItem = ({ title, text, status, index }) => {
-  const [active, setActive] = useState(status);
-  const handleClick = () => {
-    setActive(!active);
-  };
-  return (
-    <Box
-      sx={styles.item}
-      className={`${active === true ? "active" : " "}`}
-      onClick={handleClick}
-    >
-      <Heading as="h3">
-        <span>0{index + 1}.</span>
-        {title}
-      </Heading>
-      {active === false ? <Text as="p">{text.slice(0, 65)} ...</Text> : null}
-      {active === true ? <Text as="p">{text}</Text> : null}
-      <Box sx={styles.icon}>
-        {active === false ? <IoIosAdd /> : null}
-        {active === true ? <IoIosRemove /> : null}
-      </Box>
-    </Box>
-  );
-};
 const Faq = () => {
-  const { sectionTitle, posts, button } = FAQ_TWO_DATA;
   const [openForm, setOpenForm] = useState(false);
+  const [currentLanguage, setCurrentLanguage] = useState();
+  const { state } = useContext(LanguageContext);
+
+  useEffect(() => {
+    if (state.currentLanguage === "ENG") {
+      setCurrentLanguage(state.ENG.faq);
+    } else if (state.currentLanguage === "ESP") {
+      setCurrentLanguage(state.ESP.faq);
+    }
+  }, [state.currentLanguage]);
 
   const buttonHandler = () => {
     setOpenForm(!openForm);
@@ -202,30 +138,65 @@ const Faq = () => {
     );
   };
 
+  const FaqItem = ({ title, faqText, status, index }) => {
+    const [active, setActive] = useState(false);
+    const handleClick = () => {
+      setActive(!active);
+    };
+    return (
+      <>
+        {currentLanguage !== undefined && (
+          <Box
+            sx={styles.item}
+            className={`${active === true ? "active" : " "}`}
+            onClick={handleClick}
+          >
+            <Heading as="h3">
+              <span>0{index + 1}.</span>
+              {title}
+            </Heading>
+            {active === false ? (
+              <Text as="p">{faqText.slice(0, 65)} ...</Text>
+            ) : null}
+            {active === true ? <Text as="p">{faqText}</Text> : null}
+            <Box sx={styles.icon}>
+              {active === false ? <IoIosAdd /> : null}
+              {active === true ? <IoIosRemove /> : null}
+            </Box>
+          </Box>
+        )}
+      </>
+    );
+  };
+
   return (
-    <Box sx={styles.section}>
-      <Container>
-        <Box sx={styles.sectionTitle}>
-          <Text as="p">{sectionTitle.text}</Text>
-          <Heading as="h3">{sectionTitle.title}</Heading>
+    <>
+      {currentLanguage !== undefined && (
+        <Box sx={styles.section}>
+          <Container>
+            <Box sx={styles.sectionTitle}>
+              <Text as="p">{currentLanguage.sectionTitle.text}</Text>
+              <Heading as="h3">{currentLanguage.sectionTitle.title}</Heading>
+            </Box>
+            <Box>
+              {currentLanguage.posts.map(({ title, text, status }, index) => (
+                <FaqItem
+                  key={`faq-key-${index}`}
+                  title={title}
+                  faqText={text}
+                  index={index}
+                  status={status}
+                />
+              ))}
+            </Box>
+            <Box id="gotRecomendations?" sx={styles.buttonWrap}>
+              <Link onClick={buttonHandler}>{Button.label}</Link>
+            </Box>
+            {openForm && <Form />}
+          </Container>
         </Box>
-        <Box>
-          {posts.map(({ title, text, status }, index) => (
-            <FaqItem
-              key={`faq-key-${index}`}
-              title={title}
-              text={text}
-              index={index}
-              status={status}
-            />
-          ))}
-        </Box>
-        <Box id="gotRecomendations?" sx={styles.buttonWrap}>
-          <Link onClick={buttonHandler}>{button.label}</Link>
-        </Box>
-        {openForm && <Form />}
-      </Container>
-    </Box>
+      )}
+    </>
   );
 };
 

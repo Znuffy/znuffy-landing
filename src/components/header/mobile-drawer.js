@@ -1,15 +1,21 @@
-import React, { useContext } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { Button, Box } from "theme-ui";
 import { Scrollbars } from "react-custom-scrollbars";
 import Drawer from "components/drawer";
+import { LanguageProvider } from "../../contexts/language/language.provider";
 import { DrawerContext } from "contexts/drawer/drawer.context";
 import { IoMdClose, IoMdMenu } from "react-icons/io";
 import { Link as ScrollLink } from "react-scroll";
 import menuItems from "./header.data";
 import Logo from "components/logo";
+import Flag from "../UI/Flag";
 
-const MobileDrawer = () => {
+const MobileDrawer = (props) => {
   const { state, dispatch } = useContext(DrawerContext);
+
+  useEffect(() => {
+    console.log(props);
+  });
 
   // Toggle drawer
   const toggleHandler = React.useCallback(() => {
@@ -19,40 +25,46 @@ const MobileDrawer = () => {
   }, [dispatch]);
 
   return (
-    <Drawer
-      width="320px"
-      drawerHandler={
-        <Box sx={styles.handler}>
-          <IoMdMenu size="22px" />
-        </Box>
-      }
-      open={state.isOpen}
-      toggleHandler={toggleHandler}
-      closeButton={<IoMdClose size="24px" color="#02073E" />}
-      drawerStyle={styles.drawer}
-      closeBtnStyle={styles.close}
-    >
-      <Scrollbars autoHide>
-        <Box sx={styles.content}>
-          <Logo />
-          <Box sx={styles.menu}>
-            {menuItems.map(({ path, label }, i) => (
-              <ScrollLink
-                activeClass="active"
-                to={path}
-                spy={true}
-                smooth={true}
-                offset={10}
-                duration={500}
-                key={i}
-              >
-                {label}
-              </ScrollLink>
-            ))}
+    <LanguageProvider>
+      <Drawer
+        width="320px"
+        drawerHandler={
+          <Box sx={styles.handler}>
+            <IoMdMenu size="22px" />
           </Box>
-        </Box>
-      </Scrollbars>
-    </Drawer>
+        }
+        open={state.isOpen}
+        toggleHandler={toggleHandler}
+        closeButton={<IoMdClose size="24px" color="#02073E" />}
+        drawerStyle={styles.drawer}
+        closeBtnStyle={styles.close}
+      >
+        <Scrollbars autoHide>
+          <Box sx={styles.content}>
+            <Logo />
+            <Box sx={styles.menu}>
+              {menuItems.map(({ path, label }, i) => (
+                <ScrollLink
+                  activeClass="active"
+                  to={path}
+                  spy={true}
+                  smooth={true}
+                  offset={10}
+                  duration={500}
+                  key={i}
+                >
+                  {label}
+                </ScrollLink>
+              ))}
+            </Box>
+            <Box sx={styles.languages}>
+              <Flag language="ESP" onPickLanguage={props.langPicker} />
+              <Flag language="ENG" onPickLanguage={props.langPicker} />
+            </Box>
+          </Box>
+        </Scrollbars>
+      </Drawer>
+    </LanguageProvider>
   );
 };
 
@@ -131,6 +143,13 @@ const styles = {
     py: "0",
     backgroundColor: "black",
     color: "#fff",
+  },
+  languages: {
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "left",
+    margin: "-13px",
+    marginTop: "5vh",
   },
 };
 

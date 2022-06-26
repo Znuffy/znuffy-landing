@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import { ThemeProvider } from "theme-ui";
 import { StickyProvider } from "contexts/app/app.provider";
 import theme from "theme";
@@ -11,23 +11,27 @@ import Faq from "sections/Faq";
 import Video from "sections/video";
 import Team from "../sections/Team";
 
+import { LanguageProvider } from "../contexts/language/language.provider";
+
 export default function IndexPage() {
   return (
     <ThemeProvider theme={theme}>
-      <StickyProvider>
-        <Layout>
-          <SEO
-            title="Znuffy Landing"
-            description="Landing page for the Znuffy App"
-          />
-          <Banner />
-          <Mission />
-          <Reason />
-          <Video />
-          <Team />
-          <Faq />
-        </Layout>
-      </StickyProvider>
+      <LanguageProvider>
+        <StickyProvider>
+          <Layout>
+            <SEO
+              title="Znuffy Landing"
+              description="Landing page for the Znuffy App"
+            />
+            <Banner />
+            <Mission />
+            <Reason />
+            <Video />
+            <Team />
+            <Faq />
+          </Layout>
+        </StickyProvider>
+      </LanguageProvider>
     </ThemeProvider>
   );
 }

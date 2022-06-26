@@ -1,90 +1,54 @@
-import React from "react";
-import { Container, Link, Box, Grid, Heading, Text, Image } from "theme-ui";
-import { IoIosArrowForward } from "react-icons/io";
+import React, { useContext, useState, useEffect } from "react";
+import { Container, Box, Grid, Heading, Text, Image } from "theme-ui";
 import SectionHeading from "components/section-heading";
-import feature3 from "assets/service-3.svg";
-import feature4 from "assets/service-4.svg";
-import feature5 from "assets/service-5.svg";
-import anjiePic from "assets/teamPics/Anjie3.jpeg";
-import refitPic from "assets/teamPics/Refit.jpg";
-import maxPic from "assets/teamPics/Max2.jpg";
-import ximePic from "assets/teamPics/xime2.png";
-import barbiePic from "assets/teamPics/barbie.png";
 
-// Memojis
-import maxMemoji from "../assets/teamPics/memojis/maxMemoji.png";
-import ximeMemoji from "../assets/teamPics/memojis/ximeMemoji.png";
-
-const PRODUCT_FEATURE = {
-  sectionTitle: {
-    text: `"There is nothing a group of crazy people with a common goal can't do"`,
-    title: "Our beloved Team",
-  },
-  posts: [
-    {
-      icon: anjiePic,
-      title: "Anjelika Angelova",
-      role: "UX Designer and Strategist",
-      text: "My purpose is to contribute to something impactful, something meaningful that will bring change. And working on Znuffy is the best example for that.",
-    },
-    {
-      icon: refitPic,
-      title: "Refit Refiti",
-      role: "UX Designer and Strategist",
-      text: "Get your info tests delivered at hoe collect a sample from the your pogress actual tests.",
-    },
-    {
-      icon: feature3,
-      title: "Nathaly Guerrero",
-      role: "Marketing",
-      text: "Get your info tests delivered at home collect a sample from the your pogress actual tests.",
-    },
-    {
-      icon: barbiePic,
-      title: "Barbie Cáceres",
-      role: "AudioVisual Documentation",
-      text: "Get your info tests delivered at home collect a sample from the your pogress actual tests.",
-    },
-    {
-      icon: ximeMemoji,
-      title: "Ximena Scura",
-      role: "Graphic Communications",
-      text: "Get your info tests delivered at home collect a sample from the your pogress actual tests.",
-    },
-    {
-      icon: maxMemoji,
-      title: "Max Rosales",
-      role: "Project and Technological Development",
-      text: "Get your info tests delivered at home collect a sample from the your pogress actual tests.",
-    },
-  ],
-};
+// Context
+import { LanguageContext } from "../contexts/language/language.context";
 
 const Team = () => {
-  const { sectionTitle, posts } = PRODUCT_FEATURE;
-  return (
-    <Box sx={styles.section} id="team">
-      <Container>
-        <SectionHeading slogan={sectionTitle.text} title={sectionTitle.title} />
+  const [currentLanguage, setCurrentLanguage] = useState();
+  const { state } = useContext(LanguageContext);
 
-        <Grid sx={styles.grid}>
-          {posts.map(({ icon, title, text, role }, index) => (
-            <Box key={`feature-key-${index}`} sx={styles.items}>
-              <Box className="image">
-                <Image src={icon} alt={title} variant="avatar" />
-              </Box>
-              <Box sx={styles.itemContent}>
-                <Heading as="h3">{title}</Heading>
-                <Heading as="p">
-                  <Text as="span">{role}</Text>
-                </Heading>
-                <Text as="p">{text}</Text>
-              </Box>
-            </Box>
-          ))}
-        </Grid>
-      </Container>
-    </Box>
+  useEffect(() => {
+    if (state.currentLanguage === "ENG") {
+      setCurrentLanguage(state.ENG.team);
+    } else if (state.currentLanguage === "ESP") {
+      setCurrentLanguage(state.ESP.team);
+    }
+  }, [state.currentLanguage]);
+
+  return (
+    <>
+      {currentLanguage !== undefined && (
+        <Box sx={styles.section} id="team">
+          <Container>
+            <SectionHeading
+              slogan={currentLanguage.text}
+              title={currentLanguage.title}
+            />
+
+            <Grid sx={styles.grid}>
+              {currentLanguage.posts.map(
+                ({ icon, title, text, role }, index) => (
+                  <Box key={`feature-key-${index}`} sx={styles.items}>
+                    <Box className="image">
+                      <Image src={icon} alt={title} variant="avatar" />
+                    </Box>
+                    <Box sx={styles.itemContent}>
+                      <Heading as="h3">{title}</Heading>
+                      <Heading as="p">
+                        <Text as="span">{role}</Text>
+                      </Heading>
+                      <Text as="p">{text}</Text>
+                    </Box>
+                  </Box>
+                )
+              )}
+            </Grid>
+          </Container>
+        </Box>
+      )}
+    </>
   );
 };
 
