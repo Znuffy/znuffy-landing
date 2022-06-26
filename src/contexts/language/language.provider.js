@@ -16,15 +16,11 @@ import banner from "assets/bannerForWho/bannerForWhat.jpg";
 
 // Team
 import feature3 from "assets/service-3.svg";
-import feature4 from "assets/service-4.svg";
-import feature5 from "assets/service-5.svg";
-import anjiePic from "assets/teamPics/Anjie3.jpeg";
-import refitPic from "assets/teamPics/Refit.jpg";
-import maxPic from "assets/teamPics/Max2.jpg";
-import ximePic from "assets/teamPics/xime2.png";
-import barbiePic from "assets/teamPics/barbie.png";
 import maxMemoji from "assets/teamPics/memojis/maxMemoji.png";
-import ximeMemoji from "assets/teamPics/memojis/ximeMemoji.png";
+import ximeMemoji from "assets/teamPics/memojis/ximePropioMemoji.png";
+import refitMemoji from "assets/teamPics/memojis/refitMemoji.png";
+import anjieMemoji from "assets/teamPics/memojis/anjieMemoji.png";
+import barbieMemoji from "assets/teamPics/memojis/barbieMemoji.png";
 
 // Video
 import videoImage from "assets/video.png";
@@ -87,13 +83,13 @@ const initialState = {
       },
       posts: [
         {
-          icon: anjiePic,
+          icon: anjieMemoji,
           title: "Anjelika Angelova",
           role: "Diseñador UX",
           text: "My purpose is to contribute to something impactful, something meaningful that will bring change. And working on Znuffy is the best example for that.",
         },
         {
-          icon: refitPic,
+          icon: refitMemoji,
           title: "Refit Refiti",
           role: "Diseñador UX",
           text: "Get your info tests delivered at hoe collect a sample from the your pogress actual tests.",
@@ -105,7 +101,7 @@ const initialState = {
           text: "Get your info tests delivered at home collect a sample from the your pogress actual tests.",
         },
         {
-          icon: barbiePic,
+          icon: barbieMemoji,
           title: "Barbie Cáceres",
           role: "AudioVisual Documentation",
           text: "Get your info tests delivered at home collect a sample from the your pogress actual tests.",
@@ -237,13 +233,13 @@ const initialState = {
       },
       posts: [
         {
-          icon: anjiePic,
+          icon: anjieMemoji,
           title: "Anjelika Angelova",
           role: "Diseñador UX",
           text: "Mi propósito es contribuir algo impactante, algo significativo que traiga cambios. Y trabajar en Znuffy es el mejor ejemplo de ello.",
         },
         {
-          icon: refitPic,
+          icon: refitMemoji,
           title: "Refit Refiti",
           role: "Diseñador UX",
           text: "Si puedo contribuir a ayudar, inclusive, a una sola mascota a encontrar un hogar amoroso, significa que he cumplido mi misión.",
@@ -255,7 +251,7 @@ const initialState = {
           text: "Get your info tests delivered at home collect a sample from the your pogress actual tests.",
         },
         {
-          icon: barbiePic,
+          icon: barbieMemoji,
           title: "Barbie Cáceres",
           role: "AudioVisual Documentation",
           text: "Get your info tests delivered at home collect a sample from the your pogress actual tests.",
