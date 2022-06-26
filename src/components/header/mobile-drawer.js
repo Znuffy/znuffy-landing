@@ -13,10 +13,6 @@ import Flag from "../UI/Flag";
 const MobileDrawer = (props) => {
   const { state, dispatch } = useContext(DrawerContext);
 
-  useEffect(() => {
-    console.log(props);
-  });
-
   // Toggle drawer
   const toggleHandler = React.useCallback(() => {
     dispatch({
