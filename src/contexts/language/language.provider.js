@@ -3,6 +3,7 @@ import { LanguageContext } from "./language.context";
 
 // Banner Img
 import bannerImg from "assets/banner.svg";
+import labrador from "assets/img/test/labrador_sf.png";
 
 // Mission Imgs
 import dog from "assets/icons/dog.png";
@@ -21,6 +22,7 @@ import ximeMemoji from "assets/teamPics/memojis/ximePropioMemoji.png";
 import refitMemoji from "assets/teamPics/memojis/refitMemoji.png";
 import anjieMemoji from "assets/teamPics/memojis/anjieMemoji.png";
 import barbieMemoji from "assets/teamPics/memojis/barbieMemoji.png";
+import linkedInSmall from "assets/SM-icons/LinkedIn/LinkedIn-Logos/LI-In-Bug.png";
 
 // Video
 import videoImage from "assets/video.png";
@@ -28,11 +30,14 @@ import videoImage from "assets/video.png";
 const initialState = {
   currentLanguage: "ENG",
   ENG: {
+    // ==========================
+    // === BANNER
     banner: {
       title: "Adopting and Living with Pets made easy",
       text: "Znuffy is the first Platform in the market that provides tools to adopt Animals looking for a home, and the elements needed to maintain your new best friends stress-free.",
       image: bannerImg,
     },
+    // === MISSION
     mission: {
       title: "A Pet Adoption-and-eCommerce Platform",
       text: "What exactly is Znuffy?",
@@ -49,6 +54,7 @@ const initialState = {
         },
       ],
     },
+    // === REASON
     reason: {
       sectionImage: banner,
       tagline: "... but, why?",
@@ -76,6 +82,7 @@ const initialState = {
         },
       ],
     },
+    // === TEAM
     team: {
       sectionTitle: {
         text: `"There is nothing a group of crazy people with a common goal can't do"`,
@@ -84,42 +91,54 @@ const initialState = {
       posts: [
         {
           icon: anjieMemoji,
+          smIcon: linkedInSmall,
+          linkedIn: "https://www.linkedin.com/in/anzhelika-angelova/",
           title: "Anjelika Angelova",
           role: "Diseñador UX",
           text: "My purpose is to contribute to something impactful, something meaningful that will bring change. And working on Znuffy is the best example for that.",
         },
         {
           icon: refitMemoji,
+          linkedIn: "https://www.linkedin.com/in/refit-refiti-1ba68aa2/",
+          smIcon: linkedInSmall,
           title: "Refit Refiti",
           role: "Diseñador UX",
           text: "Get your info tests delivered at hoe collect a sample from the your pogress actual tests.",
         },
         {
           icon: feature3,
+          smIcon: linkedInSmall,
+          linkedIn:
+            "https://www.linkedin.com/in/alejandro-j-ruoti-capurro-0a6051181/",
           title: "Alejandro Ruoti",
           role: "Office Manager",
           text: "Get your info tests delivered at home collect a sample from the your pogress actual tests.",
         },
         {
           icon: barbieMemoji,
+          smIcon: linkedInSmall,
           title: "Barbie Cáceres",
           role: "AudioVisual Documentation",
           text: "Get your info tests delivered at home collect a sample from the your pogress actual tests.",
         },
         {
           icon: ximeMemoji,
+          smIcon: linkedInSmall,
           title: "Ximena Scura",
           role: "Graphic Communications",
           text: "Get your info tests delivered at home collect a sample from the your pogress actual tests.",
         },
         {
           icon: maxMemoji,
+          smIcon: linkedInSmall,
+          linkedIn: "https://www.linkedin.com/in/maximilian-rosales/",
           title: "Max Rosales",
           role: "Project and Technological Development",
           text: "Get your info tests delivered at home collect a sample from the your pogress actual tests.",
         },
       ],
     },
+    // === FAQ
     faq: {
       sectionTitle: {
         title: "Frequantly asked question",
@@ -162,6 +181,7 @@ const initialState = {
         label: "Contact us <3",
       },
     },
+    // === VIDEO
     video: {
       image: videoImage,
       title: ``,
@@ -172,14 +192,16 @@ const initialState = {
       },
     },
   },
-
+  // ==========================
+  // ==========================
   ESP: {
+    // === BANNER
     banner: {
       title: "Adoptar y vivir con animales nunca fue tan facil",
       text: "Znuffy es la primera plataforma del mercado que proporciona herramientas para adoptar animales que buscan un hogar, y los elementos necesarios para mantener a tus nuevos mejores amigos sin estrés.",
       image: bannerImg,
     },
-
+    // === MISSION
     mission: {
       title: "Una plataforma de adopción y comercio electrónico de mascotas",
       text: "¿Que es Znuffy?",
@@ -197,7 +219,7 @@ const initialState = {
         },
       ],
     },
-
+    // === REASON
     reason: {
       sectionImage: banner,
       tagline: "... pero, ¿porque?",
@@ -226,6 +248,7 @@ const initialState = {
         },
       ],
     },
+    // === TEAM
     team: {
       sectionTitle: {
         text: `"No hay nada que un grupo de locos con un objetivo común no puedan hacer"`,
@@ -234,42 +257,62 @@ const initialState = {
       posts: [
         {
           icon: anjieMemoji,
+          smIcon: linkedInSmall,
+          linkedIn: "https://www.linkedin.com/in/anzhelika-angelova/",
           title: "Anjelika Angelova",
           role: "Diseñador UX",
           text: "Mi propósito es contribuir algo impactante, algo significativo que traiga cambios. Y trabajar en Znuffy es el mejor ejemplo de ello.",
+          linkedIn: "",
         },
         {
           icon: refitMemoji,
+          linkedIn: "https://www.linkedin.com/in/refit-refiti-1ba68aa2/",
+          smIcon: linkedInSmall,
           title: "Refit Refiti",
           role: "Diseñador UX",
           text: "Si puedo contribuir a ayudar, inclusive, a una sola mascota a encontrar un hogar amoroso, significa que he cumplido mi misión.",
+          linkedIn: "",
         },
         {
           icon: feature3,
+          smIcon: linkedInSmall,
+          linkedIn:
+            "https://www.linkedin.com/in/alejandro-j-ruoti-capurro-0a6051181/",
           title: "Alejandro Ruoti",
           role: "Office Manager",
           text: "Get your info tests delivered at home collect a sample from the your pogress actual tests.",
+          linkedIn: "",
         },
         {
           icon: barbieMemoji,
+          smIcon: linkedInSmall,
+          linkedIn: "",
           title: "Barbie Cáceres",
           role: "AudioVisual Documentation",
           text: "Get your info tests delivered at home collect a sample from the your pogress actual tests.",
+          linkedIn: "",
         },
         {
           icon: ximeMemoji,
+          smIcon: linkedInSmall,
+          linkedIn: "",
           title: "Ximena Scura",
           role: "Graphic Communications",
           text: "Get your info tests delivered at home collect a sample from the your pogress actual tests.",
+          linkedIn: "",
         },
         {
           icon: maxMemoji,
           title: "Max Rosales",
+          smIcon: linkedInSmall,
+          linkedIn: "https://www.linkedin.com/in/maximilian-rosales/",
           role: "Project and Technological Development",
           text: "",
+          linkedIn: "",
         },
       ],
     },
+    // === FAQ
     faq: {
       sectionTitle: {
         title: "Preguntas frecuentes",
@@ -312,6 +355,7 @@ const initialState = {
         label: "Contact us <3",
       },
     },
+    // === VIDEO
     video: {
       image: videoImage,
       title: ``,
