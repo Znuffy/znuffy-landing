@@ -29,15 +29,26 @@ const Team = () => {
 
             <Grid sx={styles.grid}>
               {currentLanguage.posts.map(
-                ({ icon, title, text, role }, index) => (
+                ({ icon, title, text, role, smIcon, linkedIn }, index) => (
                   <Box key={`feature-key-${index}`} sx={styles.items}>
                     <Box className="image">
                       <Image src={icon} alt={title} variant="avatar" />
                     </Box>
                     <Box sx={styles.itemContent}>
-                      <Heading as="h3">{title}</Heading>
+                      <Box>
+                        <Heading as="h3">{title}</Heading>
+                        {/* <Image src={icon} alt={title} variant="avatar" /> */}
+                      </Box>
                       <Heading as="p">
                         <Text as="span">{role}</Text>
+                        <a href={`${linkedIn}`} target="_blank">
+                          <Image
+                            src={smIcon}
+                            alt={title}
+                            variant="avatar"
+                            sx={styles.smIcon}
+                          />
+                        </a>
                       </Heading>
                       <Text as="p">{text}</Text>
                     </Box>
@@ -117,6 +128,16 @@ const styles = {
         fontSize: "17px",
         ml: "5px",
       },
+    },
+  },
+  smIcon: {
+    width: "100%",
+    height: "2vh",
+    borderRadius: "0",
+    paddingLeft: "0.5vw",
+    "@media screen and (max-width: 600px)": {
+      display: "flex",
+      marginLeft: "2vw",
     },
   },
 };
