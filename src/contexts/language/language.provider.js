@@ -134,7 +134,7 @@ const initialState = {
           linkedIn: "https://www.linkedin.com/in/maximilian-rosales/",
           title: "Max Rosales",
           role: "Project and Technological Development",
-          text: "Get your info tests delivered at home collect a sample from the your pogress actual tests.",
+          text: "Its all about making a positive difference, and we believe, reducing the suffering of stray animals around the world is a great start.",
         },
       ],
     },
@@ -262,7 +262,6 @@ const initialState = {
           title: "Anjelika Angelova",
           role: "Diseñador UX",
           text: "Mi propósito es contribuir algo impactante, algo significativo que traiga cambios. Y trabajar en Znuffy es el mejor ejemplo de ello.",
-          linkedIn: "",
         },
         {
           icon: refitMemoji,
@@ -271,7 +270,6 @@ const initialState = {
           title: "Refit Refiti",
           role: "Diseñador UX",
           text: "Si puedo contribuir a ayudar, inclusive, a una sola mascota a encontrar un hogar amoroso, significa que he cumplido mi misión.",
-          linkedIn: "",
         },
         {
           icon: feature3,
@@ -281,7 +279,6 @@ const initialState = {
           title: "Alejandro Ruoti",
           role: "Office Manager",
           text: "Get your info tests delivered at home collect a sample from the your pogress actual tests.",
-          linkedIn: "",
         },
         {
           icon: barbieMemoji,
@@ -290,7 +287,6 @@ const initialState = {
           title: "Barbie Cáceres",
           role: "AudioVisual Documentation",
           text: "Get your info tests delivered at home collect a sample from the your pogress actual tests.",
-          linkedIn: "",
         },
         {
           icon: ximeMemoji,
@@ -299,7 +295,6 @@ const initialState = {
           title: "Ximena Scura",
           role: "Graphic Communications",
           text: "Get your info tests delivered at home collect a sample from the your pogress actual tests.",
-          linkedIn: "",
         },
         {
           icon: maxMemoji,
@@ -307,8 +302,7 @@ const initialState = {
           smIcon: linkedInSmall,
           linkedIn: "https://www.linkedin.com/in/maximilian-rosales/",
           role: "Project and Technological Development",
-          text: "",
-          linkedIn: "",
+          text: "Tratamos de hacer un cambio positivo, y que mejor inicio, que reduciendo el sufrimiento de animales viviendo en las calles.",
         },
       ],
     },
